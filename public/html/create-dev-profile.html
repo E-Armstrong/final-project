@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create A Dev Profile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script
+            src="http://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <h1> Create a Developer Profile </h1>
+
+            <form v-on:submit="createProfile">
+                <p>Enter a username:</p>
+                <input type="text" v-model="newDev.username" placeholder="Username"/>
+                <p>Create a password:</p>
+                <input type="password" v-model="newDev.password" placeholder="Password"/>
+                <p>Enter your full name:</p>                
+                <input type="text" v-model="newDev.name" placeholder="Your Full Name"/>
+                <p>Enter the url of your portfolio:</p>                
+                <input type="text" v-model="newDev.portfolioSite" placeholder="Portfolio Site URL">
+                <p>Add a description of yourself (how long have you been a web developer? Why do you enjoy web development? What is your work experiene?):</p>                
+                <input type="text" v-model="newDev.description" placeholder="Describe yourself and your work"/>
+                <p>Select an image</p>
+                <input type="file" @change="onFileChange">
+                <input type="submit" value="Create Profile!"/>
+                </div>
+
+            </form>
+
+        </div>
+    <script src="/js/create-dev-profile.js"> </script>
+    </body>
+</html>
+
