@@ -13,21 +13,23 @@
     <body>
 
         <div id="app">
-            <h1> Create a Developer Profile </h1>
+            <h1> Post a Site Listing </h1>
 
-            <form v-on:submit="createProfile">
-                <p>Enter a username:</p>
-                <input type="text" v-model="newDev.username" placeholder="Username"/>
+            <form v-on:submit="createSitePost">
+                <p>Enter your Name or Business Name</p>
+                <input type="text" v-model="sitePost.name" placeholder="Username"/>
                 <p>Create a password:</p>
-                <input type="password" v-model="newDev.password" placeholder="Password"/>
-                <p>Enter your full name:</p>                
-                <input type="text" v-model="newDev.name" placeholder="Your Full Name"/>
-                <p>Enter the url of your portfolio:</p>                
-                <input type="text" v-model="newDev.portfolioSite" placeholder="Portfolio Site URL">
-                <p>Add a description of yourself (how long have you been a web developer? Why do you enjoy web development? What is your work experiene?):</p>                
-                <input type="text" v-model="newDev.description" placeholder="Describe yourself and your work"/>
-                <p>Select an image</p>
-                <input type="file" @change="onFileChange">
+                <input type="password" v-model="sitePost.password" placeholder="Password"/>
+                <p>Enter your email:</p>                
+                <input type="text" v-model="sitePost.email" placeholder="Your Full Name"/>
+                <p>Amount to spend:</p>                
+                <input type="text" v-model="sitePost.toSpend" placeholder="Portfolio Site URL">
+                <p>Timeline:</p>                
+                <input type="date" v-model="sitePost.timeline" placeholder="Describe yourself and your work"/>
+                <p>Overall purpose of your website:</p>                
+                <input type="text" v-model="sitePost.purpose" placeholder="Portfolio Site URL">
+                <p>Desired features for Website (ability for clients to purchase items, contact form, etc.):</p>                
+                <input type="text" v-model="sitePost.features" placeholder="Portfolio Site URL">
                 <input type="submit" value="Create Profile!"/>
                 </div>
 

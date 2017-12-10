@@ -1,39 +1,31 @@
 let Developer = new Vue({
     el: '#app',
     data: {
-        newDev: {
-            username: '',
-            password: '',
+        sitePost: {
             name: '',
-            portfolioSite: '',
-            description: '',
-            file: '',
+            password: '',
+            email: '',
+            toSpend: '',
+            timeline: '',
+            purpose: '',
+            features: '',
         },
         
     },
     methods: {
-        createProfile: function(evt) {
+        createSitePost: function(evt) {
             evt.preventDefault();
-            var vm = this;
-            let formData = new FormData();
-            formData.append('username', this.newDev.username);
-            formData.append('password', this.newDev.password);
-            formData.append('name', this.newDev.name);
-            formData.append('portfolioSite', this.newDev.portfolioSite);
-            formData.append('description', this.newDev.description);
-            formData.append('file', this.newDev.file);
-            console.log(formData)
-            $.post('/new-dev', formData, function(datafromserver){
-                console.log("Post to /new-dev a success!")
+            $.post('/new-site', {newSitePost: this.sitePost}, function(datafromserver){
+                console.log("Post to /new-site a success!")
             })
         },
         onFileChange(e) {
             var files = e.target.files || e.dataTransfer.files;
             if (!files.length) return;
-            this.newDev.file = files[0];
+            this.sitePost.purpose = files[0];
         },
         removeImage: function (e) {
-            this.newDev.picture = '';
+            this.sitePost.picture = '';
         },
     }
 });

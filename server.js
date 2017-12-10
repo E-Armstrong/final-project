@@ -47,11 +47,11 @@ var User = mongoose.model('user', mongoose.Schema({
 }));
 
 var sitePost = mongoose.model('sitePost', mongoose.Schema({
-    postID         : { type: String, required: true},
     name           : { type: String, required: true},
     password       : { type: String, required: true},
     email          : { type: String, required: true},
     wantToSpend    : { type: Number, required: true },
+    timeline       : { type: Date,   required: false},
     description    : { type: String, required: false },
     desiredFeatures: { type: String, required: false },
 }));
@@ -83,6 +83,26 @@ app.get('/create-dev-profile', function(req, res, next){
 app.post('/new-dev', function(req, res, next) {
     console.log('body: ' + JSON.stringify(req.body));
 	res.send(req.body);
+});
+
+app.post('/new-site', function(req, res, next) {
+    res.send(req.body);
+    let newSite = {
+        name           : req.body.newSitePost.name,
+        password       : req.body.newSitePost.password,
+        email          : req.body.newSitePost.email,
+        wantToSpend    : req.body.newSitePost.toSpend,
+        timeline       : req.body.newSitePost.timeline,
+        description    : req.body.newSitePost.purpose,
+        desiredFeatures: req.body.newSitePost.features,
+    },
+    new sitePost(newSite).save(function(err, createdAnimal) {
+        if (err) { 
+            res.status(500).send(err);
+            return console.log(err);
+        }
+        res.status(200).send(createdAnimal);
+    })
 });
 
 app.get('/profile-created', function(req, res, next){
