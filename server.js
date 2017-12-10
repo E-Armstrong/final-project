@@ -3,10 +3,13 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var express = require('express');
 var sessions = require("client-sessions");
+var multer  = require('multer')
 
 var app = express();
 app.use(express.static('./public'))
+var upload = multer({dest:'uploads/'});
 
+var cpUpload = upload.single('postImg');
 var secrets = require("./secrets")
 
 var sessionsMiddleware = sessions({
@@ -54,7 +57,7 @@ var sitePost = mongoose.model('sitePost', mongoose.Schema({
 }));
 
 app.get('/', function(req, res){
-    res.sendFile('./html/intro.html', {root:'./public'});
+    res.sendFile('./html/index.html', {root:'./public'});
 });
 
 app.get('/main', function(req, res, next){
@@ -65,7 +68,7 @@ app.get('/web-prices', function(req, res, next){
     res.sendFile('./html/webprices.html', {root:'./public'});
 });
 
-app.get('/siteform', function(req, res, next){
+app.get('/site-form', function(req, res, next){
     res.sendFile('./html/site-form.html', {root:'./public'});
 });
 
@@ -78,7 +81,8 @@ app.get('/create-dev-profile', function(req, res, next){
 });
 
 app.post('/new-dev', function(req, res, next) {
-    console.log("New dev form at server", req)
+    console.log('body: ' + JSON.stringify(req.body));
+	res.send(req.body);
 });
 
 app.get('/profile-created', function(req, res, next){
