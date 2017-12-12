@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <title>Slick</title>
         <meta charset="UTF-8">
@@ -8,12 +8,20 @@
             src="http://code.jquery.com/jquery-3.2.1.js"
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
-            <link rel='stylesheet' href="./css/main.css"
-            <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>            
-        </head>
+        <link rel='stylesheet' href="./css/main.css">
+        <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+        <link 
+            rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
+            integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" 
+            crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" 
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" 
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" 
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" 
+            crossorigin="anonymous"></script>            
+    </head>
     <body>
         <div id="app">
                 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;">
@@ -35,23 +43,33 @@
                             <a class="dropdown-item" href="/site-form">Create a Website Listing</a>
                             <a class="dropdown-item" href="/create-dev-profile">Create a Web Developer Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Shoot Somebody</a>
+                            <a class="dropdown-item" href="#">Log In</a>
                             </div>
                         </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search Listings" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
                 </nav>
-                <div class="container">
-                        <div class="row">
+                <div class="container-fluid">
+                        <div class="row no-gutters">
                           <div class="col-2">
                             
                           </div>
-                          <div id="web-listings" class="col-8">
-                            Website Listings Will Go Here
+                          <div id="web-listings-container" class="col-8">
+                            <div id="website-listings" v-for="(sites, index) in currentSites">
+                                <div id="individual-web-listing">
+                                    <div id="web-toSpend">${{currentSites[index].toSpend}}</div>
+                                    <div id="test-for-web-listings">
+                                        <div id="web-name"><b>Developer Name:</b> {{currentSites[index].name}}</div>
+                                        <div id="web-timeline"><b>Timeline to get site completed:</b>{{currentSites[index].date}}</div>
+                                        <div id="web-purpose"><b>General desired purpose of the site:</b>{{currentSites[index].purpose}}</div>
+                                        <div id="web-features"><b>Desired features:</b>{{currentSites[index].features}}</div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
                           <div class="col-2">
                             

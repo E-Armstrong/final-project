@@ -1,4 +1,27 @@
-#web-listings {
-    background-color: rgba(185, 39, 253, 0.91);
+#web-listings-container {
+    background-color: rgba(173, 20, 250, 0.91);
     color: white;
+    border-radius: 10px;
+}
+#individual-web-listing {
+    padding: 11px;
+    background-color: white;
+    color: black;
+    margin: 17px;
+    border-radius: 10px;
+    position: relative;
+}
+
+#web-toSpend {
+    color: green;
+    font-size: 3rem;
+    float: left;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+#test-for-web-listings {
+    position: inline-block;
+    padding-left: 150px;
 }

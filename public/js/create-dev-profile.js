@@ -2,11 +2,11 @@ let Developer = new Vue({
     el: '#app',
     data: {
         newDev: {
-            username: '',
-            password: '',
-            name: '',
-            portfolioSite: '',
-            description: '',
+            username: 'Dan_Schmidt',
+            password: 'locomotives',
+            name: 'Dan Schmidt',
+            portfolioSite: 'schmidty.com',
+            description: 'Full stack web developer with two years experience',
             file: '',
         },
         
@@ -24,12 +24,12 @@ let Developer = new Vue({
             formData.append('name', this.newDev.name);
             formData.append('portfolioSite', this.newDev.portfolioSite);
             formData.append('description', this.newDev.description);
-            formData.append('file', files);
+            formData.append('file', this.newDev.file);
             $.ajax({
               url: '/new-dev',
               method: 'POST',
               data: formData,
-              contentType: 'multipart/form-data',
+              contentType: false,
               processData: false,
             }).done(function(datafromserver){
                 console.log("Post to /new-dev a success!")
