@@ -2,20 +2,27 @@ var mainVm = new Vue({
     el: '#app',
     data: {
         currentSites: [],
+        currentUsers: [],
+        seeSites: true,
     },
     methods: {
-        getFreshData: function(event){
-            $.post("/currentinfo", function(data) {
-                console.log("the getFreshData...data: ", data)
-                
-                
-                
+        getFreshSites: function(event){
+            $.post("/currentsites", function(data) {
+                console.log("the getFreshSites...data: ", data)
                 
                 mainVm.currentSites = data
             })
         },
+        getFreshUsers: function(event){
+            $.post("/currentusers", function(data) {
+                console.log("the getFreshUsers...data: ", data)
+                
+                mainVm.currentUsers = data
+            })
+        },
     },
     created(){
-        this.getFreshData()
+        this.getFreshSites();
+        this.getFreshUsers();
      },
 })

@@ -7,6 +7,8 @@ var multer  = require('multer')
 
 var app = express();
 app.use(express.static('./public'))
+app.use("/uploads", express.static('./uploads'))
+
 var upload = multer({dest:'uploads/'});
 
 var cpUpload = upload.single('postImg');
@@ -134,16 +136,9 @@ app.post('/new-site', function(req, res, next) {
 
         })
     })
-    // new sitePost(newSite).save(function(err, createdAnimal) {
-    //     if (err) { 
-    //         res.status(500).send(err);
-    //         return console.log(err);
-    //     }
-    //     res.status(200).send(createdAnimal);
-    // })
 });
 
-app.post("/currentinfo", function(req, res){
+app.post("/currentsites", function(req, res){
     sitePost.find(
         {},
         function(err, sitePosts) {
@@ -153,6 +148,20 @@ app.post("/currentinfo", function(req, res){
             }
             console.log(sitePosts)
             res.status(200).send(sitePosts);
+        }
+    )
+})
+
+app.post("/currentusers", function(req, res){
+    User.find(
+        {},
+        function(err, users) {
+            if (err) {
+                res.status(500).send(err);
+                return console.log(err);
+            }
+            console.log(users)
+            res.status(200).send(users);
         }
     )
 })
