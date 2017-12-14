@@ -2,11 +2,11 @@ let Developer = new Vue({
     el: '#app',
     data: {
         newDev: {
-            username: 'Dan_Schmidt',
-            password: 'locomotives',
-            name: 'Dan Schmidt',
-            portfolioSite: 'schmidty.com',
-            description: 'Full stack web developer with two years experience',
+            username: '',
+            password: '',
+            name: '',
+            portfolioSite: '',
+            description: '',
             file: '',
         },
         

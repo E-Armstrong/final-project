@@ -2,11 +2,11 @@ let Developer = new Vue({
     el: '#app',
     data: {
         sitePost: {
-            name: 'Django',
-            password: 'unchained',
-            email: 'kill@whitepeople.com',
-            toSpend: '999',
-            timeline: '04/26/1985',
+            name: '',
+            password: '',
+            email: '',
+            toSpend: '',
+            timeline: '',
             date: '',
             purpose: '',
             features: '',
