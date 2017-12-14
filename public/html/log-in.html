@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign In</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script
+            src="http://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+    </head>
+    <body id="body">
+
+        <div id="app">
+            <h1> Log In </h1>
+
+            <form v-on:submit="submitData">
+                <p>Username:</p>
+                <input type="text" v-model="user.name" placeholder="Username"/>
+                <p>Password:</p>
+                <input type="password" v-model="user.password" placeholder="Password"/>
+                <button function="submit">Submit</button>
+
+            </form>
+
+        </div>
+    <script src="/js/log-in.js"> </script>
+    </body>
+</html>

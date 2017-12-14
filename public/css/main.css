@@ -1,3 +1,14 @@
+#navbar {
+    position: fixed;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+}
+
+#body {
+    margin-top: 56px;
+  }
+
 #web-listings-container {
     background-color: rgb(114, 52, 165);
     color: white;
@@ -21,9 +32,9 @@
     transform: translateY(-50%);
 }
 
-#test-for-web-listings {
+#text-for-web-listings {
     position: inline-block;
-    padding-left: 150px;
+    padding-left: 159px;
     font-size: .85rem;
 }
 
@@ -39,4 +50,10 @@
     margin: 9px;
     border-radius: 10px;
     position: relative;
+    min-height: 172px;
+}
+
+#dev-profile-pic {
+    display: inline-block;
+    position: absolute;
 }

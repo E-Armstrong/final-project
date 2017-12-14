@@ -22,9 +22,9 @@
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" 
             crossorigin="anonymous"></script>            
         </head>
-        <body>
+        <body id="body">
             <div id="app">
-                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;">
+                <nav id="navbar" class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;">
                     <a class="navbar-brand" href="/">S L I C K</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
                                     <a class="dropdown-item" href="/site-form">Create a Website Listing</a>
                                     <a class="dropdown-item" href="/create-dev-profile">Create a Web Developer Profile</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Log In</a>
+                                    <a class="dropdown-item" href="/log-in">Log In</a>
                                 </div>
                             </li>
                         </ul>
@@ -63,11 +63,11 @@
                         <div id="website-listings" v-for="(sites, index) in currentSites">
                             <div id="individual-web-listing">
                                 <div id="web-toSpend">${{currentSites[index].toSpend}}</div>
-                                <div id="test-for-web-listings">
-                                    <div id="web-name"><b>Name:</b> {{currentSites[index].name}}</div>
-                                    <div id="web-timeline"><b>Timeline to get site completed:</b>{{currentSites[index].date}}</div>
-                                    <div id="web-purpose"><b>General desired purpose of the site:</b>{{currentSites[index].purpose}}</div>
-                                    <div id="web-features"><b>Desired features:</b>{{currentSites[index].features}}</div>
+                                <div id="text-for-web-listings">
+                                    <div id="web-name"><b>Name: </b> {{currentSites[index].name}}</div>
+                                    <div id="web-timeline"><b>Timeline to get site completed: </b>{{currentSites[index].date}}</div>
+                                    <div id="web-purpose"><b>General desired purpose of the site: </b>{{currentSites[index].purpose}}</div>
+                                    <div id="web-features"><b>Desired features: </b>{{currentSites[index].features}}</div>
                                 </div>
                             </div>
                         </div>
@@ -76,11 +76,10 @@
                             <div id="dev-listings" v-for="(dev, index) in currentUsers">
                                     <div id="individual-dev-listing">
                                         <div id="dev-profile-pic"><img v-bind:src="currentUsers[index].path" height="150px" width="150px"></div>
-                                        <div id="test-for-web-listings">
-                                            <div id="dev-name"><b>Name:</b> {{currentUsers[index].name}}</div>
-                                            <div id="dev-about"><b>About me:</b>{{currentUsers[index].description}}</div>
-                                            <div id="dev-site"><b>Portfolio site:</b>{{currentUsers[index].portfolioSite}}</div>
-                                            <div id="dev-rating"><b>Rating:</b></div>
+                                        <div id="text-for-web-listings">
+                                            <div id="dev-name"><b>Name: </b> {{currentUsers[index].name}}</div>
+                                            <div id="dev-site"><b>Portfolio site: </b>{{currentUsers[index].portfolioSite}}</div>
+                                            <div id="dev-about"><b>About me: </b>{{currentUsers[index].description}}</div>
                                         </div>
                                     </div>
                                 </div>

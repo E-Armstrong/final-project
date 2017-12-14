@@ -4,15 +4,18 @@ var bcrypt = require('bcryptjs');
 var express = require('express');
 var sessions = require("client-sessions");
 var multer  = require('multer')
+var secrets = require("./secrets")
+var cookieParser = require('cookie-parser')
 
 var app = express();
+app.use(cookieParser())
+
 app.use(express.static('./public'))
 app.use("/uploads", express.static('./uploads'))
 
 var upload = multer({dest:'uploads/'});
-
 var cpUpload = upload.single('postImg');
-var secrets = require("./secrets")
+
 
 var sessionsMiddleware = sessions({
     cookieName: 'auth-cookie',  // front-end cookie name
@@ -68,9 +71,34 @@ var checkIfLoggedIn = function(req, res, next){
     }
 }
 
+function isADev(req, res, next) {
+    User.findOne({_id: req.session.uid}, function(err, user){
+        if ( err ) {
+            console.log('failed to find user')
+            res.send({failure:'failure'})
+        }
+        else if ( !user ) {
+            res.send({failure:'failure'})
+        } else {
+            if( user.role === 'visitor' || user.role === 'warden' || user.role === 'guard' ) {
+                // do something and call next()
+                console.log("Access is granted, come on in.")
+                next()
+            } else {
+                res.send(403)
+                // send down a forbidden response (status code 403)
+            }
+        }
+    })
+}
+
 app.get('/', function(req, res){
     res.sendFile('./html/index.html', {root:'./public'});
 });
+
+app.get('/check-for-logged-dev', function(req, res) {
+    
+})
 
 app.get('/main', function(req, res, next){
     res.sendFile('./html/main.html', {root:'./public'});
@@ -90,6 +118,41 @@ app.get('/request-site-home', function(req, res, next){
 
 app.get('/create-dev-profile', function(req, res, next){
     res.sendFile('./html/create-dev-profile.html', {root:'./public'});
+});
+
+app.get('/log-in', function(req, res, next){
+    res.sendFile('./html/log-in.html', {root:'./public'});
+});
+
+app.post('/log-in-user', function(req, res, next){
+    console.log(req.body.user.name)
+    var username = req.body.user.name
+    var pass = req.body.user.password
+  
+    User.findOne({username:username}, function(err,user) {
+        if(err) {
+        console.log('failed to find user')
+        res.send({failure:'error finding her'})
+        } else if(!user) {
+        res.send({failure: 'no user of this name'})
+        } else {
+            console.log(pass, user.password)
+        bcrypt.compare(pass, user.password, function(bcryptErr,matched) {
+            if(bcryptErr) {
+            console.log('bcrypt err --- ', bcryptErr)
+            res.send({failure: 'bcrypt error'})
+            } else if(!matched) {
+            console.log(`wrong username/password`)
+            res.send({failure:'wrong username/password'})
+            } else if(matched) {
+            req.session._id = user._id
+            console.log("req.session id", req.session._id)
+            console.log(req.cookies)
+            res.send({success:'success'})
+            }
+        })
+        }
+    })
 });
 
 app.post('/new-dev', upload.single('file'), function(req, res, next) {

@@ -8,8 +8,8 @@ let Developer = new Vue({
             toSpend: '999',
             timeline: '04/26/1985',
             date: '',
-            purpose: 'Kill dem...',
-            features: '..white slavers',
+            purpose: '',
+            features: '',
         },
         
     },
