@@ -233,4 +233,4 @@ app.get('/profile-created', function(req, res, next){
     res.sendFile('./html/profile-created.html', {root:'./public'});
 });
 
-app.listen(8080)
+app.listen(80)
